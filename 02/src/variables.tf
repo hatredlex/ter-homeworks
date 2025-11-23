@@ -28,11 +28,52 @@ variable "vpc_name" {
   description = "VPC network & subnet name"
 }
 
+variable "vpc_name_b" {
+  type        = string
+  default     = "develop-b"
+  description = "subnet name in zone b"
+}
+
+variable "zone_b" {
+  type        = string
+  default     = "ru-central1-b"
+  description = "https://cloud.yandex.ru/docs/overview/concepts/geo-scope"
+}
+
+variable "cidr_b" {
+  type        = list(string)
+  default     = ["10.0.2.0/24"]
+  description = "https://cloud.yandex.ru/docs/vpc/operations/subnet-create"
+}
+
 
 ###ssh vars
 
-variable "vms_ssh_root_key" {
+/*variable "vms_ssh_root_key" {
   type        = string
-  default     = "<your_ssh_ed25519_key>"
+  default     = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILQna0dIm27/Q/omazV1fwORvbjA7uXaueikLtu7T013 root@Ubu"
   description = "ssh-keygen -t ed25519"
+}*/
+
+### Metadata
+variable "vms_metadata" {
+  type = map(any)
+  default = {
+    serial-port-enable = 1
+    ssh-keys           = "ubuntu:ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILQna0dIm27/Q/omazV1fwORvbjA7uXaueikLtu7T013 root@Ubu"
+  }
+}
+
+
+###VM vars
+
+variable "vm_image_family" {
+  type    = string
+  default = "ubuntu-2004-lts"
+}
+
+variable "prefix" {
+  type    = string
+  default = "netology"
+  description = "For VM naming"
 }
