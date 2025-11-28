@@ -53,5 +53,7 @@ variable "vm_db_name" {
   description = "example vm_db_ prefix"
 }
 
-
-
+variable "ssh_public_key" {
+  type    = string
+  default = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILQna0dIm27/Q/omazV1fwORvbjA7uXaueikLtu7T013 root@Ubu"
+}
